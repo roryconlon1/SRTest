@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Homepage = () => {
 
-    const [data, setData] = useState([])
+    const [interaction, setInteraction] = useState([])
 
     useEffect(() => {
         getData();
@@ -11,10 +11,10 @@ const Homepage = () => {
     const getData = () => {
         fetch("http://substantiveresearch.pythonanywhere.com/")
         .then(res => res.json())
-        .then(info => setData(info))
+        .then(data => setInteraction(data))
     }
 
-    const displayData = data.map((call, index) => {
+    const displayData = interaction.map((call, index) => {
         return <div>
             <li>
                     {call.name}
