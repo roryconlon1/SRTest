@@ -10,8 +10,16 @@ const Homepage = () => {
 
     const getData = () => {
         fetch("http://substantiveresearch.pythonanywhere.com/")
-            .then(res => res.json())
+            .then((res) => {
+                if (res.ok){
+                    return res.json();
+                }
+                throw new Error('Something went wrong');
+            })
             .then(data => setInteraction(data))
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     const occurence = interaction.reduce((accumulator, value) => {
