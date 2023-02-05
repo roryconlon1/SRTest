@@ -10,22 +10,29 @@ const Homepage = () => {
 
     const getData = () => {
         fetch("http://substantiveresearch.pythonanywhere.com/")
-        .then(res => res.json())
-        .then(data => setInteraction(data))
+            .then(res => res.json())
+            .then(data => setInteraction(data))
     }
 
-    const displayData = interaction.map((call, index) => {
-        return <div>
-            <li>
-                    {call.name}
-            </li>
-        </div>
+    const occurence = interaction.reduce((accumulator, value) => {
+        accumulator[value.name] = accumulator[value.name] ? accumulator[value.name] + 1 : 1;
+        return accumulator;
+    }, {})
+
+    const occurenceVals = Object.keys(occurence).map((objectKey, index) => {
+        return (
+            <div key={index}>
+                <li>
+                    {objectKey} : {occurence[objectKey]}
+                </li>
+            </div>
+        )
     })
 
-    return(
+    return (
         <div>
             <ul>
-                {displayData}
+                {occurenceVals}
             </ul>
         </div>
     )
