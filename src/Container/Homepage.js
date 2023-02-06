@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import styled from "styled-components";
+
+const ChartWrapper = styled.div`
+height: 500px;
+width: 800px;
+overflow: auto;`
 
 const Homepage = () => {
 
     const [interaction, setInteraction] = useState([])
+    const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
         getData();
@@ -27,22 +35,25 @@ const Homepage = () => {
         return accumulator;
     }, {})
 
-    const occurenceVals = Object.keys(occurence).map((objectKey, index) => {
-        return (
-            <div key={index}>
-                <li>
-                    {objectKey} : {occurence[objectKey]}
-                </li>
-            </div>
-        )
-    })
+    useEffect(() => {
+        setChartData(occurenceVals);
+    }, [interaction])
+
+    const occurenceVals = Object.keys(occurence).map((objectKey) => (
+        {name : objectKey, value : occurence[objectKey]}))        
 
     return (
-        <div>
-            <ul>
-                {occurenceVals}
-            </ul>
-        </div>
+
+        <BarChart 
+                width={1200} 
+                height={500}
+                data={chartData}
+                >
+            <XAxis dataKey="name"  />
+            <YAxis/>
+            <Tooltip/>
+            <Bar dataKey="value" fill="#8884d8"/>
+        </BarChart>
     )
 }
 
