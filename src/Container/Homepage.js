@@ -43,9 +43,9 @@ const Homepage = () => {
         {name : objectKey, value : occurence[objectKey]}))        
 
     return (
-
-        <BarChart 
-                width={1200} 
+        <ChartWrapper>
+                    <BarChart 
+                width={1800} 
                 height={500}
                 data={chartData}
                 >
@@ -54,6 +54,7 @@ const Homepage = () => {
             <Tooltip/>
             <Bar dataKey="value" fill="#8884d8"/>
         </BarChart>
+        </ChartWrapper>
     )
 }
 
