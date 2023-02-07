@@ -1,0 +1,12 @@
+#nav {
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    background-color: #112A42;
+    font-size: 1.5rem;
+    font-family: "Roboto";
+}
+
+.ui.secondary.menu .item{
+    color: #FFFFFF;
+}

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
+import Barchart from "../Components/Barchart";
+import HomePage from "../Components/HomePage";
+import NavBar from "../NavBar";
 
-const ChartWrapper = styled.div`
-height: 500px;
-width: 800px;
-overflow: auto;`
-
-const Homepage = () => {
+const MainContainer = () => {
 
     const [interaction, setInteraction] = useState([])
     const [chartData, setChartData] = useState([]);
@@ -16,10 +14,14 @@ const Homepage = () => {
         getData();
     }, [])
 
+    useEffect(() => {
+        setChartData(occurenceVals);
+    }, [interaction])
+
     const getData = () => {
         fetch("http://substantiveresearch.pythonanywhere.com/")
             .then((res) => {
-                if (res.ok){
+                if (res.ok) {
                     return res.json();
                 }
                 throw new Error('Something went wrong');
@@ -30,32 +32,25 @@ const Homepage = () => {
             })
     }
 
+    // Reduce API data to an Object of department name and frequency of interactions
     const occurence = interaction.reduce((accumulator, value) => {
         accumulator[value.name] = accumulator[value.name] ? accumulator[value.name] + 1 : 1;
         return accumulator;
     }, {})
 
-    useEffect(() => {
-        setChartData(occurenceVals);
-    }, [interaction])
-
+    // Loop over new object to be array of objects to access key and value for displaying in a graph
     const occurenceVals = Object.keys(occurence).map((objectKey) => (
-        {name : objectKey, value : occurence[objectKey]}))        
+        { name: objectKey, value: occurence[objectKey] }))
 
     return (
-        <ChartWrapper>
-                    <BarChart 
-                width={1800} 
-                height={500}
-                data={chartData}
-                >
-            <XAxis dataKey="name"  />
-            <YAxis/>
-            <Tooltip/>
-            <Bar dataKey="value" fill="#8884d8"/>
-        </BarChart>
-        </ChartWrapper>
+        <div>
+            <NavBar />
+            <Routes>
+                <Route path="/" element={<HomePage/>} />
+                <Route path="/barchart" element={<Barchart chartData={chartData}/>} />
+            </Routes>
+        </div>
     )
 }
 
-export default Homepage;
+export default MainContainer;
