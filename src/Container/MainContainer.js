@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Barchart from "../Components/Barchart";
 import HomePage from "../Components/HomePage";
+import Piechart from "../Components/Piechart";
 import NavBar from "../NavBar";
 
 const MainContainer = () => {
@@ -48,6 +49,7 @@ const MainContainer = () => {
             <Routes>
                 <Route path="/" element={<HomePage/>} />
                 <Route path="/barchart" element={<Barchart chartData={chartData}/>} />
+                <Route path="/piechart" element={<Piechart chartData={chartData} /> } />
             </Routes>
         </div>
     )
