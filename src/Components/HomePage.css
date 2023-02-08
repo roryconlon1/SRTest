@@ -1,10 +1,10 @@
-.heading{
+.heading {
     display: flex;
     justify-content: center;
     font-family: "Roboto";
 }
 
-.para{
+.para {
     display: flex;
     justify-content: center;
     padding-top: 50px;
@@ -14,7 +14,7 @@
     padding-right: 10%;
 }
 
-.img {
+.barImg {
     padding-top: 50px;
     width: 700px;
 }

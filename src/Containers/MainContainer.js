@@ -5,7 +5,40 @@ import Barchart from "../Components/Barchart";
 import HomePage from "../Components/HomePage";
 import Piechart from "../Components/Piechart";
 import NavBar from "../NavBar";
-import './MainContainer.css'
+
+const ListOfLinks = styled.ul`
+list-style-type: none;
+margin: 0;
+overflow: hidden;
+display: flex;
+justify-content: center;
+background-color: #112A42;
+`
+
+const IndividualLink = styled.li`
+float: left;
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+padding-top: 3px;
+padding-bottom: 3px;`
+
+const Wrapper = styled.div`
+&:hover ${IndividualLink} {
+    background-color: #38495e;
+}
+`
+const Footer = styled.footer`
+left: 0%;
+bottom: 0%;
+width: 100%;`
+
+const Logo = styled.img`
+max-height: 60px;
+max-width: 200px;
+object-fit: cover;`
 
 const MainContainer = () => {
 
@@ -48,10 +81,24 @@ const MainContainer = () => {
         <div className="main">
             <NavBar />
             <Routes>
-                <Route path="/" element={<HomePage/>} />
-                <Route path="/barchart" element={<Barchart chartData={chartData}/>} />
-                <Route path="/piechart" element={<Piechart chartData={chartData} /> } />
+                <Route path="/" element={<HomePage />} />
+                <Route path="/barchart" element={<Barchart chartData={chartData} />} />
+                <Route path="/piechart" element={<Piechart chartData={chartData} />} />
             </Routes>
+            <Footer>
+                <ListOfLinks>
+                    <Wrapper>
+                        <IndividualLink>
+                            <a class="github" href="https://github.com/roryconlon1"><Logo src={require("../Images/Octicons-mark-github.svg.png")} alt="Github Profile"></Logo></a>
+                        </IndividualLink>
+                    </Wrapper>
+                    <Wrapper>
+                        <IndividualLink>
+                            <a class="github" href="https://www.linkedin.com/in/rory-conlon-643128134"><Logo src={require("../Images/linkedin.png")} alt="Linekdin Profile"></Logo></a>
+                        </IndividualLink>
+                    </Wrapper>
+                </ListOfLinks>
+            </Footer>
         </div>
     )
 }
