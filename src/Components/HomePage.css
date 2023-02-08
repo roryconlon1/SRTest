@@ -1,0 +1,29 @@
+.heading{
+    display: flex;
+    justify-content: center;
+    font-family: "Roboto";
+}
+
+.para{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    font-family: "Roboto";
+    font-size: 1.6em;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.img {
+    padding-top: 50px;
+    width: 700px;
+}
+
+.pieImg {
+    width: 500px;
+}
+
+.images {
+    display: flex;
+    justify-content: space-around;
+}

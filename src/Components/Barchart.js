@@ -1,25 +1,22 @@
 import React from "react";
-import { Bar, BarChart, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
 import styled from "styled-components";
 import './Barchart.css'
 import { Zoom } from "react-reveal";
 
-const ChartWrapper = styled.div`
-height: 500px;
-width: 500px;
-overflow: auto;`
-
 const Barchart = ({ chartData }) => {
 
     return (
-        <div>
+        <div className="bar">
         <Zoom>
             <BarChart
-                width={700}
+                width={1000}
                 height={500}
                 data={chartData}
+                padding={100}
             >
-                <XAxis dataKey="name" />
+                <CartesianGrid strokeDasharray="1 1" />
+                <XAxis dataKey="name" textAnchor= "end" sclaeToFit="true" verticalAnchor= "start"  interval={0} angle= "-40" height={100}/>
                 <YAxis />
                 <Tooltip />
                 <Bar

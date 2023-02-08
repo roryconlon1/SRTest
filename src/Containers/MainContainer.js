@@ -5,6 +5,7 @@ import Barchart from "../Components/Barchart";
 import HomePage from "../Components/HomePage";
 import Piechart from "../Components/Piechart";
 import NavBar from "../NavBar";
+import './MainContainer.css'
 
 const MainContainer = () => {
 
@@ -44,7 +45,7 @@ const MainContainer = () => {
         { name: objectKey, value: occurence[objectKey] }))
 
     return (
-        <div>
+        <div className="main">
             <NavBar />
             <Routes>
                 <Route path="/" element={<HomePage/>} />
