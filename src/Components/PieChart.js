@@ -1,20 +1,24 @@
 import React from "react";
-import { Pie, PieChart } from "recharts";
+import { Pie, PieChart, Tooltip } from "recharts";
 
 const Piechart = ({chartData}) => {
 
+    let renderLabel = function(entry) {
+        return entry.name;
+    }
 
     return(
-        <PieChart width={1000} height={400}>
+        <PieChart width={3000} height={4000}>
             <Pie 
             dataKey="value"
             isAnimationActive={false}
             data={chartData}
-            cx={200}
-            cy={200}
-            outerRadius={80}
+            cx={330}
+            cy={300}
+            outerRadius={200}
             fill="#8884d8"
-            label/>
+            label={renderLabel}/>
+            <Tooltip />
         </PieChart>
     )
 }
